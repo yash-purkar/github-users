@@ -1,28 +1,53 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [users, setUsers] = useState([]);
+
+  async function getUsers() {
+    let response = await fetch("https://api.github.com/users");
+    let data = await response.json();
+    setUsers(data)
+  }
+
+
+  useEffect(() => {
+    getUsers()
+  }, [])
+
   return (
     <div className="App">
-      <div>
-        <img src="#" alt="" style={{ width: "100px", height: "100px" }} />
-        <p>Yash</p><hr />
-        <div>
-          <div>
-            <small>Articles</small>
-            <p>27</p>
-          </div>
-          <hr />
-          <div>
-            <small>Followers</small>
-            <p>444</p>
-          </div>
-          <hr />
-          <div>
-            <small>Rating</small>
-            <p>8.9</p>
-          </div>
-        </div>
-      </div>
+      {
+        users.map((currElem) => {
+          return (
+            <div className='container'>
+              <div className='header'>
+                <img src={currElem.avatar_url} alt="" style={{ width: "100px", height: "100px" }} className="img" />
+                <h2>{currElem.login}</h2>
+              </div>
+              <div className='main'>
+                <div className='three-section-div'>
+                  <div className='sections'>
+                    <small>Followers</small>
+                    <p>1000</p>
+                  </div>
+
+                  <div className='sections'>
+                    <small>Following</small>
+                    <p>9000</p>
+                  </div>
+
+                  <div className='sections'>
+                    <small>Rating</small>
+                    <p>8.9</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        })
+      }
+
     </div>
   );
 }
