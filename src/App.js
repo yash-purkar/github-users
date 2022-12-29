@@ -9,9 +9,9 @@ function App() {
   async function getUsers() {
     try {
       let response = await fetch("https://api.github.com/users");
-      setLoading(false)
       let data = await response.json();
       setUsers(data)
+      setLoading(false)
     } catch (error) {
       setLoading(false);
       console.log(error);
