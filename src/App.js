@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Loading from './Loading'
 import './App.css';
+import { FcApproval, FcBusinessman } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -35,17 +37,17 @@ function App() {
               <div className='container'>
                 <div className='header'>
                   <img src={currElem.avatar_url} alt="" style={{ width: "100px", height: "100px" }} className="img" />
-                  <h2>{currElem.login}</h2>
+                  <h2>{currElem.login}<FcApproval /> <FaGithub /></h2>
                 </div>
                 <div className='main'>
                   <div className='three-section-div'>
                     <div className='sections'>
-                      <small>Followers</small>
+                      <small>Followers <FcBusinessman /></small>
                       <p>10000</p>
                     </div>
 
                     <div className='sections'>
-                      <small>Following</small>
+                      <small>Following <FcBusinessman /></small>
                       <p>2000</p>
                     </div>
 
