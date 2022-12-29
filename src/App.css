@@ -50,3 +50,10 @@ p {
   text-align: center;
   font-weight: bold;
 }
+
+@media only screen and (max-width: 600px) {
+  .App {
+    width: 500px;
+    grid-template-columns: 1fr;
+  }
+}
