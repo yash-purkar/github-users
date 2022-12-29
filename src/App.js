@@ -1,19 +1,29 @@
 import { useEffect, useState } from 'react';
+import Loading from './Loading'
 import './App.css';
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   async function getUsers() {
-    let response = await fetch("https://api.github.com/users");
-    let data = await response.json();
-    setUsers(data)
+    try {
+      let response = await fetch("https://api.github.com/users");
+      setLoading(false)
+      let data = await response.json();
+      setUsers(data)
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
   }
-
-
   useEffect(() => {
     getUsers()
-  }, [])
+  }, []);
+
+  if (loading == true) {
+    return <Loading />
+  }
 
   return (
     <>
